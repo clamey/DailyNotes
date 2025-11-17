@@ -1,0 +1,1 @@
+ALL_YOUR_BASE="/allyourbase"

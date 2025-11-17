@@ -11,3 +11,5 @@ class Config(object):
   SQLALCHEMY_TRACK_MODIFICATIONS = False
   JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(days=7)
   EXPORT_FILE = os.path.join(basedir, 'config', 'export.zip')
+
+OTHER_BASE="/fubar"

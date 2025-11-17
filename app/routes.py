@@ -5,7 +5,8 @@ from app import app, db, argon2
 from app.models import User, Note, Meta, aes_encrypt, aes_encrypt_old
 from flask import render_template, request, jsonify, abort, send_file
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
-
+from config import OTHER_BASE
+from not_hidden_config import ALL_YOUR_BASE
 
 @app.route('/api/sign-up', methods=['POST'])
 def sign_up():
@@ -398,6 +399,22 @@ def search():
 
   return jsonify(notes=sorted_nodes), 200
 
+BASE="/foo"
+
+@app.route(ALL_YOUR_BASE + '/<int:count>')
+@jwt_required()
+def all_your_foo_bar():
+    return "ok", 200
+
+@app.route(OTHER_BASE + '/<int:count>')
+@jwt_required()
+def other_foo_bar():
+    return "ok", 200
+
+@app.route(BASE + '/bar/<int:count>')
+@jwt_required()
+def foo_bar():
+    return "ok", 200
 
 @app.route('/api/export')
 @jwt_required()
